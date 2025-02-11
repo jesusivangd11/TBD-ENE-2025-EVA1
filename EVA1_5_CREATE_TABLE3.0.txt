@@ -1,0 +1,487 @@
+EVA1_5_CREATE_TABLE3.0
+
+MySQL Shell 8.0.35
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > connect --mc root@localhost
+ERROR: Not connected.
+           -> \^C
+ MySQL  SQL > \connect --mc root@localhost;
+Creating a Classic session to 'root@localhost;'
+Please provide the password for 'root@localhost;': **************
+MySQL Error 2005 (HY000): Unknown MySQL server host 'localhost;' (11001)
+ MySQL  SQL >  \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.35 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_eva_1          |
+| world              |
++--------------------+
+7 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  SQL > use tbd_eva_1
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > show tables;
++---------------------+
+| Tables_in_tbd_eva_1 |
++---------------------+
+| persona             |
+| prueba              |
+| vehiculo            |
++---------------------+
+3 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc Vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Marca    | varchar(20) | YES  |     | NULL    |       |
+| Modelo   | varchar(30) | YES  |     | NULL    |       |
+| Year     | int         | YES  |     | NULL    |       |
+| Color    | varchar(20) | YES  |     | NULL    |       |
+| No_Serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.0279 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc prueba;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| dato  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+1 row in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create temporary table Temporal(
+                                          -> id int,
+                                          -> dato varchar(50));
+Query OK, 0 rows affected (0.0106 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > isnert into Tempora
+                                          -> values(1, "ALGO"), (2, "XXXX");
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'isnert into Tempora
+values(1, "ALGO"), (2, "XXXX")' at line 1
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select* from Temporal;
+Empty set (0.0006 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > isnert into Temporal
+                                          -> values(1, "ALGO"), (2, "XXXX");
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'isnert into Temporal
+values(1, "ALGO"), (2, "XXXX")' at line 1
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > isnert into Temporal
+                                          -> values(1, "ALGO"), (2, "XXXX");
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'isnert into Temporal
+values(1, "ALGO"), (2, "XXXX")' at line 1
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > insert into Temporal
+                                          -> values(1, "ALGO"), (2, "XXXX");
+Query OK, 2 rows affected (0.0273 sec)
+
+Records: 2  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select*from Temporal;
++----+------+
+| id | dato |
++----+------+
+|  1 | ALGO |
+|  2 | XXXX |
++----+------+
+2 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > show tables;
++---------------------+
+| Tables_in_tbd_eva_1 |
++---------------------+
+| persona             |
+| prueba              |
+| vehiculo            |
++---------------------+
+3 rows in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > \disconnect
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 9
+Server version: 8.0.35 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_eva_1          |
+| world              |
++--------------------+
+7 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select*from Temporal;
+ERROR: 1146 (42S02): Table 'tbd_eva_1.temporal' doesn't exist
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > use sakila;
+Default schema set to `sakila`.
+Fetching global names, object names from `sakila` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  sakila  SQL > show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > desc acotr;
+ERROR: 1146 (42S02): Table 'sakila.acotr' doesn't exist
+ MySQL  localhost:3306 ssl  sakila  SQL > desc actor;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0023 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > use tbs_eva_1
+MySQL Error 1049: Unknown database 'tbs_eva_1'
+ MySQL  localhost:3306 ssl  sakila  SQL > use tbd_eva_1
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table actor like sakila.actor;
+Query OK, 0 rows affected (0.1079 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > show tables;
++---------------------+
+| Tables_in_tbd_eva_1 |
++---------------------+
+| actor               |
+| persona             |
+| prueba              |
+| vehiculo            |
++---------------------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc actor;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select*from acotr;
+ERROR: 1146 (42S02): Table 'tbd_eva_1.acotr' doesn't exist
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select * from acotr;
+ERROR: 1146 (42S02): Table 'tbd_eva_1.acotr' doesn't exist
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL >  select * from actor;
+Empty set (0.0011 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select*from acotr;
+ERROR: 1146 (42S02): Table 'tbd_eva_1.acotr' doesn't exist
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select*from actor;
+Empty set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc actor,
+                                          -> ^C
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc actor;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select count(*) from sakila.actor;
++----------+
+| count(*) |
++----------+
+|      201 |
++----------+
+1 row in set (0.0199 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > use sakila;
+Default schema set to `sakila`.
+Fetching global names, object names from `sakila` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  sakila  SQL > desc city;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| city_id     | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| city        | varchar(50)       | NO   |     | NULL              |                                               |
+| country_id  | smallint unsigned | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > select count(*) from city;
++----------+
+| count(*) |
++----------+
+|      600 |
++----------+
+1 row in set (0.0319 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table ciudad as select * from sakila.city;
+Query OK, 600 rows affected (0.0763 sec)
+
+Records: 600  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > show tables;
++---------------------+
+| Tables_in_tbd_eva_1 |
++---------------------+
+| actor               |
+| ciudad              |
+| persona             |
+| prueba              |
+| vehiculo            |
++---------------------+
+5 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc city;
+ERROR: 1146 (42S02): Table 'tbd_eva_1.city' doesn't exist
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc ciudad;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| city_id     | smallint unsigned | NO   |     | 0                 |                                               |
+| city        | varchar(50)       | NO   |     | NULL              |                                               |
+| country_id  | smallint unsigned | NO   |     | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select * from ciudad limit 10;
++---------+----------------------+------------+---------------------+
+| city_id | city                 | country_id | last_update         |
++---------+----------------------+------------+---------------------+
+|       1 | A Coruña (La Coruña) |         87 | 2006-02-15 04:45:25 |
+|       2 | Abha                 |         82 | 2006-02-15 04:45:25 |
+|       3 | Abu Dhabi            |        101 | 2006-02-15 04:45:25 |
+|       4 | Acuña                |         60 | 2006-02-15 04:45:25 |
+|       5 | Adana                |         97 | 2006-02-15 04:45:25 |
+|       6 | Addis Abeba          |         31 | 2006-02-15 04:45:25 |
+|       7 | Aden                 |        107 | 2006-02-15 04:45:25 |
+|       8 | Adoni                |         44 | 2006-02-15 04:45:25 |
+|       9 | Ahmadnagar           |         44 | 2006-02-15 04:45:25 |
+|      10 | Akishima             |         50 | 2006-02-15 04:45:25 |
++---------+----------------------+------------+---------------------+
+10 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select * from sakila.city limit 10;
++---------+----------------------+------------+---------------------+
+| city_id | city                 | country_id | last_update         |
++---------+----------------------+------------+---------------------+
+|       1 | A Coruña (La Coruña) |         87 | 2006-02-15 04:45:25 |
+|       2 | Abha                 |         82 | 2006-02-15 04:45:25 |
+|       3 | Abu Dhabi            |        101 | 2006-02-15 04:45:25 |
+|       4 | Acuña                |         60 | 2006-02-15 04:45:25 |
+|       5 | Adana                |         97 | 2006-02-15 04:45:25 |
+|       6 | Addis Abeba          |         31 | 2006-02-15 04:45:25 |
+|       7 | Aden                 |        107 | 2006-02-15 04:45:25 |
+|       8 | Adoni                |         44 | 2006-02-15 04:45:25 |
+|       9 | Ahmadnagar           |         44 | 2006-02-15 04:45:25 |
+|      10 | Akishima             |         50 | 2006-02-15 04:45:25 |
++---------+----------------------+------------+---------------------+
+10 rows in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > use sakila;
+Default schema set to `sakila`.
+Fetching global names, object names from `sakila` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  sakila  SQL > show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.0017 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > use tbd_eva_1,
+MySQL Error 1049: Unknown database 'tbd_eva_1,'
+ MySQL  localhost:3306 ssl  sakila  SQL > create table country like sakila.country;
+ERROR: 1066 (42000): Not unique table/alias: 'country'
+ MySQL  localhost:3306 ssl  sakila  SQL > use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table country like sakila.country;
+Query OK, 0 rows affected (0.0319 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > show tables;
++---------------------+
+| Tables_in_tbd_eva_1 |
++---------------------+
+| actor               |
+| ciudad              |
+| country             |
+| persona             |
+| prueba              |
+| vehiculo            |
++---------------------+
+6 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc country;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| country_id  | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| country     | varchar(50)       | NO   |     | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+3 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > use sakila;
+Default schema set to `sakila`.
+Fetching global names, object names from `sakila` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  sakila  SQL > desc country;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| country_id  | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| country     | varchar(50)       | NO   |     | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+3 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > desc customer;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| customer_id | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| store_id    | tinyint unsigned  | NO   | MUL | NULL              |                                               |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| email       | varchar(50)       | YES  |     | NULL              |                                               |
+| address_id  | smallint unsigned | NO   | MUL | NULL              |                                               |
+| active      | tinyint(1)        | NO   |     | 1                 |                                               |
+| create_date | datetime          | NO   |     | NULL              |                                               |
+| last_update | timestamp         | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+9 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  sakila  SQL > use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table customer as select * from sakil.customer;
+ERROR: 1049 (42000): Unknown database 'sakil'
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table customer as select * from sakila.customer;
+Query OK, 599 rows affected (0.1027 sec)
+
+Records: 599  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > show tables;
++---------------------+
+| Tables_in_tbd_eva_1 |
++---------------------+
+| actor               |
+| ciudad              |
+| country             |
+| customer            |
+| persona             |
+| prueba              |
+| vehiculo            |
++---------------------+
+7 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc customer;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| customer_id | smallint unsigned | NO   |     | 0                 |                                               |
+| store_id    | tinyint unsigned  | NO   |     | NULL              |                                               |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   |     | NULL              |                                               |
+| email       | varchar(50)       | YES  |     | NULL              |                                               |
+| address_id  | smallint unsigned | NO   |     | NULL              |                                               |
+| active      | tinyint(1)        | NO   |     | 1                 |                                               |
+| create_date | datetime          | NO   |     | NULL              |                                               |
+| last_update | timestamp         | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+9 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select * from country;
+Empty set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc customer
+                                          -> ^C
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc customer;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| customer_id | smallint unsigned | NO   |     | 0                 |                                               |
+| store_id    | tinyint unsigned  | NO   |     | NULL              |                                               |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   |     | NULL              |                                               |
+| email       | varchar(50)       | YES  |     | NULL              |                                               |
+| address_id  | smallint unsigned | NO   |     | NULL              |                                               |
+| active      | tinyint(1)        | NO   |     | 1                 |                                               |
+| create_date | datetime          | NO   |     | NULL              |                                               |
+| last_update | timestamp         | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+9 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > select*from customer;
++-------------+----------+-------------+--------------+------------------------------------------+------------+--------+---------------------+---------------------+
+| customer_id | store_id | first_name  | last_name    | email                                    | address_id | active | create_date         | last_update         |
++-------------+----------+-------------+--------------+------------------------------------------+------------+--------+---------------------+---------------------+
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table producto(
+                                          -> id int auto_increment,
+                                          -> Nombre varchar(50), not null,
+                                          -> Precio float(10,2));
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null,
+Precio float(10,2))' at line 3
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table producto( id int auto_increment key, Nombre varchar(50), not null, Precio float(10,2));
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null, Precio float(10,2))' at line 1
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > create table producto( id int auto_increment key, Nombre varchar(50) not null, Precio float(10,2));
+Query OK, 0 rows affected, 1 warning (0.0589 sec)
+Warning (code 1681): Specifying number of digits for floating point data types is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL > desc producto;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| Nombre | varchar(50) | NO   |     | NULL    |                |
+| Precio | float(10,2) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  tbd_eva_1  SQL >
