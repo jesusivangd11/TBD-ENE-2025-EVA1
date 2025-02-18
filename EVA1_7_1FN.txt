@@ -1,0 +1,165 @@
+EVA1_7_1FN
+
+MySQL Shell 8.0.35
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \c mc-- root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8 (X protocol)
+Server version: 8.0.35 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:33060+ ssl  SQL > \use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_eva_1          |
+| world              |
++--------------------+
+7 rows in set (0.0010 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL >
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > \use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > create table fn1(
+                                            -> Roll_no int,
+                                            -> First name varchar (20),
+                                            -> Subject varchar (50));
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar (20),
+Subject varchar (50))' at line 3
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > create table fn1( Roll_no int, Name varchar (20), Subject varchar (50));
+Query OK, 0 rows affected (0.0607 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > show tables;
++---------------------+
+| Tables_in_tbd_eva_1 |
++---------------------+
+| actor               |
+| ciudad              |
+| cliente             |
+| country             |
+| customer            |
+| fn1                 |
+| persona             |
+| producto            |
+| prueba              |
+| shirts              |
+| vehiculo            |
++---------------------+
+11 rows in set (0.0015 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > desc fn1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Roll_no | int         | YES  |     | NULL    |       |
+| Name    | varchar(20) | YES  |     | NULL    |       |
+| Subject | varchar(50) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.0285 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > select * from fn1;
+Empty set (0.0039 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject)
+                                            -> value(100, "Francisco", "JAVA, PYTHON");
+Query OK, 1 row affected (0.0366 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > select * from fn1;
++---------+-----------+--------------+
+| Roll_no | Name      | Subject      |
++---------+-----------+--------------+
+|     100 | Francisco | JAVA, PYTHON |
++---------+-----------+--------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(101, "Jesús", "JAVA, PYTHON, C++");
+Query OK, 1 row affected (0.0092 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > select * from fn1;
++---------+-----------+-------------------+
+| Roll_no | Name      | Subject           |
++---------+-----------+-------------------+
+|     100 | Francisco | JAVA, PYTHON      |
+|     101 | Jesús     | JAVA, PYTHON, C++ |
++---------+-----------+-------------------+
+2 rows in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > drop fn1;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fn1' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > drop fn1;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fn1' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > drop table fn1;
+Query OK, 0 rows affected (0.0180 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > desc fn1;
+ERROR: 1146: Table 'tbd_eva_1.fn1' doesn't exist
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > create table fn1(
+                                            -> create table fn1( Roll_no int, Name varchar (20), Subject varchar (50));^C
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > create table fn1( Roll_no int, Name varchar (20), Subject varchar (50));
+Query OK, 0 rows affected (0.0267 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(100, "Faiz", "JAVA");
+Query OK, 1 row affected (0.0097 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(101, "Rama", "C++, JAVA");
+Query OK, 1 row affected (0.0309 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(102, "Hitesh", "Androdid");
+
+Query OK, 1 row affected (0.0297 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(103, "Sultan", "C, C++");
+Query OK, 1 row affected (0.0061 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(106, "Mahendra", "PHP");
+Query OK, 1 row affected (0.0295 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > select * from fn1;
++---------+----------+-----------+
+| Roll_no | Name     | Subject   |
++---------+----------+-----------+
+|     100 | Faiz     | JAVA      |
+|     101 | Rama     | C++, JAVA |
+|     102 | Hitesh   | Androdid  |
+|     103 | Sultan   | C, C++    |
+|     106 | Mahendra | PHP       |
++---------+----------+-----------+
+5 rows in set (0.0007 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > drop tabel fn1;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tabel fn1' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > drop table fn1;
+Query OK, 0 rows affected (0.0199 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > create table fn1( Roll_no int, Name varchar (20), Subject varchar (50));
+Query OK, 0 rows affected (0.0498 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(100, "Faiz", "JAVA");
+Query OK, 1 row affected (0.0096 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(101, "Rama", "C++");
+Query OK, 1 row affected (0.0300 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(101, "Rama", "JAVA");
+Query OK, 1 row affected (0.0306 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(102, "Hitesh", "Androdid");
+
+Query OK, 1 row affected (0.0097 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(103, "Sultan", "C");
+Query OK, 1 row affected (0.0299 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(103, "Sultan", "C++");
+Query OK, 1 row affected (0.0300 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > insert into fn1(Roll_no, Name, Subject) value(106, "Mahendra", "PHP");
+Query OK, 1 row affected (0.0300 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > select * from fn1;
++---------+----------+----------+
+| Roll_no | Name     | Subject  |
++---------+----------+----------+
+|     100 | Faiz     | JAVA     |
+|     101 | Rama     | C++      |
+|     101 | Rama     | JAVA     |
+|     102 | Hitesh   | Androdid |
+|     103 | Sultan   | C        |
+|     103 | Sultan   | C++      |
+|     106 | Mahendra | PHP      |
++---------+----------+----------+
+7 rows in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL >
