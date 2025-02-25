@@ -1,0 +1,116 @@
+EVA1_11_DOCENTE_ALTER_TABLE
+
+MySQL Shell 8.0.35
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \c mc-- root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 9 (X protocol)
+Server version: 8.0.35 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:33060+ ssl  SQL > use tbd_eva_1;
+Default schema set to `tbd_eva_1`.
+Fetching global names, object names from `tbd_eva_1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > create table docente(
+                                            -> Nombre varchar(50) not null,
+                                            -> Plaza varchar(50),
+                                            -> Hrsplaza int,
+                                            -> Cntrotrabajo varchar(50) not null,
+                                            -> Salario numeric,
+                                            -> Anitguedad int not null,
+                                            -> ^C
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > create table docente(
+                                            -> Nombre varchar(50) not null,
+                                            ->  Plaza varchar(50),
+                                            ->  Hrsplaza int,
+                                            -> Cntrotrabajo varchar(50) not null,
+                                            ->  Salario numeric,
+                                            -> Anitguedad int not null);
+Query OK, 0 rows affected (0.0280 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > desc docente;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| Nombre       | varchar(50)   | NO   |     | NULL    |       |
+| Plaza        | varchar(50)   | YES  |     | NULL    |       |
+| Hrsplaza     | int           | YES  |     | NULL    |       |
+| Cntrotrabajo | varchar(50)   | NO   |     | NULL    |       |
+| Salario      | decimal(10,0) | YES  |     | NULL    |       |
+| Anitguedad   | int           | NO   |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+6 rows in set (0.0056 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente add ID int key auto_increment first;
+Query OK, 0 rows affected (0.0403 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente add Apellidos varchar(50) after Nombre;
+Query OK, 0 rows affected (0.0205 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > desc docente;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| ID           | int           | NO   | PRI | NULL    | auto_increment |
+| Nombre       | varchar(50)   | NO   |     | NULL    |                |
+| Apellidos    | varchar(50)   | YES  |     | NULL    |                |
+| Plaza        | varchar(50)   | YES  |     | NULL    |                |
+| Hrsplaza     | int           | YES  |     | NULL    |                |
+| Cntrotrabajo | varchar(50)   | NO   |     | NULL    |                |
+| Salario      | decimal(10,0) | YES  |     | NULL    |                |
+| Anitguedad   | int           | NO   |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+8 rows in set (0.0039 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente add R_F_C varchar(13) after Apellidos;
+Query OK, 0 rows affected (0.0209 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change R_F_C RFC varchar(13) not null;
+Query OK, 0 rows affected (0.0543 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Plaza Plaza not null;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Plaza Plazas not null;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Plaza Plaza varchar(50) not null;
+Query OK, 0 rows affected (0.0689 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Hrsplaza Horas;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Hrsplaza Horas not null;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Hrsplaza to Horas;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to Horas' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Hrsplaza to Horas varchar(5);
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to Horas varchar(5)' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Hrsplaza to Horas varchar(5) not null;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to Horas varchar(5) not null' at line 1
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > alter table docente change Hrsplaza Horas varchar(5) not null;
+Query OK, 0 rows affected (0.0826 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL > desc docente;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| ID           | int           | NO   | PRI | NULL    | auto_increment |
+| Nombre       | varchar(50)   | NO   |     | NULL    |                |
+| Apellidos    | varchar(50)   | YES  |     | NULL    |                |
+| RFC          | varchar(13)   | NO   |     | NULL    |                |
+| Plaza        | varchar(50)   | NO   |     | NULL    |                |
+| Horas        | varchar(5)    | NO   |     | NULL    |                |
+| Cntrotrabajo | varchar(50)   | NO   |     | NULL    |                |
+| Salario      | decimal(10,0) | YES  |     | NULL    |                |
+| Anitguedad   | int           | NO   |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+9 rows in set (0.0018 sec)
+ MySQL  localhost:33060+ ssl  tbd_eva_1  SQL >
